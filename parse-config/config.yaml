@@ -1,0 +1,14 @@
+# Deployment agnostic, app specific
+# I guess CI focused because CD bits live in manifest? TBD
+cb-platform:
+  component:
+    - name: customer1-app1
+      tech: python3
+      context: "."
+      py-requirements: "requirements.txt"
+      py-test-args: "test"
+      sq-project-key: "cloudbeesps-customer1-app1"
+      artifact-destination: docker.io/sbatchelder/customer1-app1
+      kaniko-build-args: "BUILDKIT_CONTEXT_KEEP_GIT_DIR=1,BUILDKIT_INLINE_CACHE=1"
+      kaniko-labels: "maintainer=John Smith"
+      dockerfile: "Dockerfile"
